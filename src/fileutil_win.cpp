@@ -11,17 +11,6 @@
 #define WIN32_LEAN_AND_MEAN
 #include <windows.h>
 
-const size_t kMaxPathLength = 32768;
-
-static std::wstring fromUtf8(const char* path)
-{
-	wchar_t buf[kMaxPathLength];
-	size_t result = MultiByteToWideChar(CP_UTF8, 0, path, strlen(path), buf, ARRAYSIZE(buf));
-	assert(result);
-
-	return std::wstring(buf, result);
-}
-
 static std::string toUtf8(const wchar_t* path, size_t length)
 {
 	char buf[kMaxPathLength];

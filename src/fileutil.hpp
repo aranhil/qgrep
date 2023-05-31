@@ -27,3 +27,7 @@ bool getFileAttributes(const char* path, uint64_t* mtime, uint64_t* size);
 FILE* openFile(const char* path, const char* mode);
 
 bool watchDirectory(const char* path, const std::function<void (const char* name)>& callback);
+
+const size_t kMaxPathLength = 32768;
+
+std::wstring fromUtf8(const char* path);

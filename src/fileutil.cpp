@@ -168,3 +168,15 @@ std::string normalizePath(const char* base, const char* path)
 
     return result;
 }
+
+#define WIN32_LEAN_AND_MEAN
+#include <windows.h>
+
+std::wstring fromUtf8(const char* path)
+{
+    wchar_t buf[kMaxPathLength];
+    size_t result = MultiByteToWideChar(CP_UTF8, 0, path, strlen(path), buf, ARRAYSIZE(buf));
+    assert(result);
+
+    return std::wstring(buf, result);
+}
